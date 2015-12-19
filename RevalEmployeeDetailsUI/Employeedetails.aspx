@@ -41,10 +41,17 @@
                                 <asp:Label ID="lblReportingEmployeeId" runat="server" Text="Reporting Employee: " />
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlReportingEmployee" runat="server" Enabled="false" CssClass="ddlClass">
-                                    <asp:ListItem Value="0">-- Select --</asp:ListItem>
-                                </asp:DropDownList>
-                                <asp:Label ID="lblReportingEmployeeValidation" runat="server" Visible="false" Text="Reporting employee does't exist." ForeColor="Red" />
+                                <asp:UpdatePanel ID="upDdlReportingEmployee" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlReportingEmployee" runat="server" Enabled="false" CssClass="ddlClass">
+                                            <asp:ListItem Value="0">-- Select --</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:Label ID="lblReportingEmployeeValidation" runat="server" Visible="false" Text="Reporting employee does't exist." ForeColor="Red" />
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlDesignation" EventName="SelectedIndexChanged" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
                             </td>
                         </tr>
                         <tr>
