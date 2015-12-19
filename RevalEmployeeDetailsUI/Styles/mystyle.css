@@ -1,0 +1,49 @@
+﻿
+/*Sets padding for EmployeeUpdate table*/
+
+#EmployeeUpdateTable tr {
+    padding: 5px;
+}
+
+table {
+    color: #a55129;
+}
+
+#EmployeeUpdateTable td {
+    padding: 10px;
+}
+
+#EmployeeUpdateTable {
+}
+
+.textBoxClass {
+    border: 1px solid #E7A586;
+    height: 20px;
+    width: 180px;
+    border-radius: 3px;
+}
+
+.ddlClass {
+    border: 1px solid #E7A586;
+    height: 24px;
+    width: 183px;
+    border-radius: 3px;
+}
+
+.ButtonStyle {
+    border: none;
+    background-color: #a55129;
+    color: white;
+    height: 24px;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.requiredIdentifier {
+    font-size: 12px;
+    color: red;
+}
+
+#EmployeeUpdateTable {
+    font-size:15px;
+}

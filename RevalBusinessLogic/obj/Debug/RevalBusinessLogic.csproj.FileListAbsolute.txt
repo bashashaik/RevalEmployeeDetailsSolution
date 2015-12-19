@@ -1,0 +1,31 @@
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.pdb
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.pdb
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.pdb
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.pdb
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalBusinessLogic.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalDataAccess.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalProperties.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\obj\Debug\RevalBusinessLogic.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalCommon.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalCommon.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalCommon.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalBusinessLogic\bin\Debug\RevalCommon.pdb

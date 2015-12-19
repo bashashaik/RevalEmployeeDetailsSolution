@@ -1,0 +1,5 @@
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalCommon\bin\Debug\RevalCommon.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalCommon\bin\Debug\RevalCommon.pdb
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalCommon\obj\Debug\RevalCommon.csprojResolveAssemblyReference.cache
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalCommon\obj\Debug\RevalCommon.dll
+C:\Users\Bash Shaik\Desktop\17-12-15\Task\RevalEmployeeDetailsSolution\RevalCommon\obj\Debug\RevalCommon.pdb

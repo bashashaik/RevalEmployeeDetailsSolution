@@ -1,0 +1,10 @@
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalProperties\bin\Debug\RevalProperties.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalProperties\bin\Debug\RevalProperties.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.dll
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.pdb
+C:\Users\Revalsys2\Desktop\Task\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.csprojResolveAssemblyReference.cache
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalProperties\bin\Debug\RevalProperties.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalProperties\bin\Debug\RevalProperties.pdb
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.csprojResolveAssemblyReference.cache
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.dll
+C:\Users\Bash Shaik\OneDrive\Office\Task 15-dec-15\RevalEmployeeDetailsSolution\RevalProperties\obj\Debug\RevalProperties.pdb
