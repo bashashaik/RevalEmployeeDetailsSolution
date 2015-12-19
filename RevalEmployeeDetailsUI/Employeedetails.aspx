@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Employeedetails.aspx.cs" Inherits="RevalEmployeeDetailsUI._Default" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Employeedetails.aspx.cs" Inherits="RevalEmployeeDetailsUI._Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,14 +6,11 @@
 <head runat="server">
     <link href="Styles/mystyle.css" rel="stylesheet" />
     <title>Revalsys</title>
-    <script type="text/javascript">
-        function SetScrollEvent() {
-            window.scrollTo(0, 0);
-        }
-    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div id="AddEmployee">
             <center>
                 <h3 style="text-align: center; font-size: 30px; color: #5F0B0B">Employee Registration Form</h3>
@@ -132,32 +129,39 @@
                 <br />
 
                 <asp:Label ID="lblDeleteValidation" runat="server" Text="Employee can't delete due to dependency." Visible="False" Style="margin-left: 620px;" Font-Bold="True" />
-                <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" EnableModelValidation="True" Height="100px" Width="961px" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvEmployees_PageIndexChanging" OnRowEditing="gvEmployees_RowEditing" DataKeyNames="EmployeeId" OnRowDeleting="gvEmployees_RowDeleting" EmptyDataText="Records are not available." OnRowDataBound="gvEmployees_RowDataBound">
-                    <Columns>
-                        <asp:BoundField DataField="EmployeeId" HeaderText="Employee Id" ShowHeader="False" Visible="False" />
-                        <asp:BoundField HeaderText="Employee Name" DataField="EmployeeName" />
-                        <asp:BoundField HeaderText="Designation" DataField="Designation" />
-                        <asp:BoundField HeaderText="Reporting Employee" DataField="ReportingEmployee" />
-                        <asp:BoundField HeaderText="Salary" DataField="Salary" DataFormatString="{0:f2}" />
-                        <asp:BoundField HeaderText="Email-Id" DataField="Email" />
-                        <asp:BoundField HeaderText="Mobile Number" DataField="MobileNumber" />
-                        <asp:BoundField HeaderText="Qualification" DataField="Qualification" />
-                        <asp:TemplateField HeaderText="Profile Image">
-                            <ItemTemplate>
-                                <asp:Image ID="Label1" runat="server" ImageUrl='<%# Bind("ProfileImage") %>' Width="100px" Height="100px"></asp:Image>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField HeaderText="Employee Number" DataField="EmployeeNumber" />
-                        <asp:CommandField ShowEditButton="True" />
-                        <asp:CommandField ShowDeleteButton="True" />
-                    </Columns>
-                    <EmptyDataRowStyle ForeColor="#A55129" />
-                    <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
-                    <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
-                    <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
-                </asp:GridView>
+                <asp:UpdatePanel ID="upGvEmployees" runat="server">
+                    <ContentTemplate>
+                        <asp:GridView ID="gvEmployees" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" EnableModelValidation="True" Height="100px" Width="961px" AllowPaging="True" PageSize="5" OnPageIndexChanging="gvEmployees_PageIndexChanging" OnRowEditing="gvEmployees_RowEditing" DataKeyNames="EmployeeId" OnRowDeleting="gvEmployees_RowDeleting" EmptyDataText="Records are not available." OnRowDataBound="gvEmployees_RowDataBound">
+                            <Columns>
+                                <asp:BoundField DataField="EmployeeId" HeaderText="Employee Id" ShowHeader="False" Visible="False" />
+                                <asp:BoundField HeaderText="Employee Name" DataField="EmployeeName" />
+                                <asp:BoundField HeaderText="Designation" DataField="Designation" />
+                                <asp:BoundField HeaderText="Reporting Employee" DataField="ReportingEmployee" />
+                                <asp:BoundField HeaderText="Salary" DataField="Salary" DataFormatString="{0:f2}" />
+                                <asp:BoundField HeaderText="Email-Id" DataField="Email" />
+                                <asp:BoundField HeaderText="Mobile Number" DataField="MobileNumber" />
+                                <asp:BoundField HeaderText="Qualification" DataField="Qualification" />
+                                <asp:TemplateField HeaderText="Profile Image">
+                                    <ItemTemplate>
+                                        <asp:Image ID="Label1" runat="server" ImageUrl='<%# Bind("ProfileImage") %>' Width="100px" Height="100px"></asp:Image>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="Employee Number" DataField="EmployeeNumber" />
+                                <asp:CommandField ShowEditButton="True" />
+                                <asp:CommandField ShowDeleteButton="True" />
+                            </Columns>
+                            <EmptyDataRowStyle ForeColor="#A55129" />
+                            <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+                            <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+                            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
+                        </asp:GridView>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="gvEmployees" EventName="PageIndexChanging" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </center>
             <br />
         </div>
@@ -174,7 +178,7 @@
             dropBox[i].addEventListener("blur", function () { this.style.border = '1px solid #E7A586' });
         }
 
-        
+
     </script>
 </body>
 </html>

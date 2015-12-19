@@ -563,8 +563,6 @@ namespace RevalEmployeeDetailsUI
                 LinkButton lbDelete = (LinkButton)e.Row.Cells[11].Controls[0];
                 lbDelete.OnClientClick = "return confirm('Are you sure to delete "+e.Row.Cells[1].Text +" ?');";
 
-                LinkButton lbEdit = (LinkButton)e.Row.Cells[10].Controls[0];
-                lbEdit.Attributes.Add("onclick", "SetScrollEvent();");
             }
         }
         #endregion

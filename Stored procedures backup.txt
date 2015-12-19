@@ -1,0 +1,472 @@
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspGetDesignationDetails]    Script Date: 19/12/2015 9:08:47 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-----------------------------------------------------------------------------------------
+-- Date Created		: Thursday, December 10, 2015
+-- Created By		: Shaik Nazeer
+-- Description		: This procedure return DesignationId, Designation in tblDesignation
+-- Usage Section	: uspGetDesignationDetails
+-- Input Parameter	: No input parameters
+-- Output Parameter	: DesignationId, Designation
+-- =====================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- --------------------------------------------------------------------------------------
+--  1.0		  Shaik Nazeer	 		 December 10, 2015 10:33 AM					Creation 
+ALTER PROCEDURE [dbo].[uspGetDesignationDetails]
+
+AS
+BEGIN
+SELECT	DesignationId, 
+		Designation 
+FROM	tblDesignation
+ORDER BY LevelId ASC
+END
+
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspGetQualificationDetails]    Script Date: 19/12/2015 9:08:58 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+----------------------------------------------------------------------------------------
+-- Date Created		: Thursday, December 10, 2015
+-- Created By		: Shaik Nazeer
+-- Description		: This procedure return QualificationId, Qualification in 
+--					  tblQualification
+-- Usage Section	: uspBindQualificationDetails
+-- Input Parameter	: No input parameters
+-- Output Parameter	: QualificationId, Qualification
+-- ======================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ---------------------------------------------------------------------------------------
+--  1.0			Shaik Nazeer	 		 December 10, 2015 10:31 AM				Creation 
+
+------------------------------------------------------------------------------------------
+
+ALTER procedure[dbo].[uspGetQualificationDetails]
+AS
+BEGIN
+SELECT	QualificationId,
+		Qualification 
+FROM	tblQualification
+END
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspGetReportingEmployeeBasedOnDesignationId]    Script Date: 19/12/2015 9:09:07 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+----------------------------------------------------------------------------------------
+-- Date Created		: Thursday, December 10, 2015
+-- Created By		: Shaik Nazeer
+-- Description		: This procedure return EmployeeId, EmployeeName of all the 
+--					: reporting employees based on passsed DesignationId
+-- Usage Section	: uspBindReportingEmployeeBasedOnDesignationId
+-- Input Parameter	: @DesignationId int 
+-- ======================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ---------------------------------------------------------------------------------------
+--  1.0		  Shaik Nazeer	 		 December 10, 2015 10:33 AM					Creation 
+
+ALTER PROCEDURE [dbo].[uspGetReportingEmployeeBasedOnDesignationId]
+(
+	@EmployeeId		BIGINT,
+	@DesignationId	INT
+)
+AS
+BEGIN
+DECLARE @LevelId int
+SELECT	@LevelId = LevelId 
+FROM	tblDesignation 
+WHERE	DesignationId = @DesignationId
+SELECT	EmployeeId, 
+		EmployeeName
+FROM	tblEmployee Employee
+JOIN	tblDesignation Designation
+ON		employee.DesignationId = Designation.DesignationId
+WHERE	Designation.LevelId < @LevelId
+AND		Employee.EmployeeId != @EmployeeId 
+ORDER BY Designation.LevelId ASC 
+END
+
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspDeleteEmployee]    Script Date: 19/12/2015 9:09:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-----------------------------------------------------------------------------------------
+-- Date Created		: Thursday, December 10, 2015
+-- Created By		: Shaik Nazeer
+-- Description		: This procedure is for Deleting a record in tblEmployee
+-- Usage Section	: uspDeleteEmployee
+-- Input Parameter	: @EmployeeId, @CompanyId, @SiteId, @DepartmentId
+-- ========================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ----------------------------------------------------------------------------------------
+--  1.0			Shaik Nazeer	 		 September 29, 2015						Creation 
+
+ALTER PROCEDURE [dbo].[uspDeleteEmployee]
+
+(
+	@EmployeeId	  BIGINT,
+	@ComapanyId	  INT,
+	@SiteId		  INT,
+	@DepartmentId INT
+)
+AS
+BEGIN
+DECLARE @count INT
+SELECT @count = COUNT(ReportingEmployeeId)
+FROM tblEmployee
+WHERE ReportingEmployeeId =@EmployeeId
+IF(@count<=0)
+begin
+DELETE 
+FROM	tblEmployee 
+where	EmployeeId	 = @EmployeeId 
+AND		CompanyId	 = @ComapanyId 
+AND		SiteId		 = @SiteID 
+AND		DepartmentId = @DepartmentId
+END
+END
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspGetEmployeeDetails]    Script Date: 19/12/2015 9:09:37 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-----------------------------------------------------------------------------------------
+-- Date Created		 :	Thursday, December 10, 2015
+-- Created By		 :	Shaik Nazeer
+-- Description		 :	This procedure is for Get employee details from tblEmployee
+-- Usage Section	 :	uspGetEmployeeDetails
+-- Input Parameter	 :	@CompanuId, @SiteId, @DepartmentId
+-- Output Parameters :	EmployeeId, EmployeeName, ReportingEmployee, Salary, Email, 
+--						MobileNumber, Qualification, ProfileImage, EmployeeNumber
+-- =======================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ----------------------------------------------------------------------------------------
+--  1.0			Shaik Nazeer	 		 September 29, 2015						Creation 
+
+ALTER PROCEDURE [dbo].[uspGetEmployeeDetails]
+
+(
+	@CompanyId		INT,
+	@SiteID			INT,
+	@DepartmentId	INT
+)
+AS
+BEGIN
+SELECT	Employee.EmployeeId, 
+		Employee.EmployeeName, 
+		Designation.Designation,
+		Manager.EmployeeName AS ReportingEmployee,
+		Employee.Salary,
+		Employee.Email,
+		Employee.MobileNumber,
+		Qualification.Qualification,
+		Employee.ProfileImage,
+		Employee.EmployeeNumber
+FROM 
+(
+SELECT	EmployeeId, 
+		EmployeeName, 
+		DesignationId, 
+		ReportingEmployeeId, 
+		Salary, 
+		Email, 
+		MobileNumber, 
+		QualificationId, 
+		ProfileImage, 
+		EmployeeNumber 
+FROM	tblEmployee 
+WHERE	CompanyId	 = @CompanyId 
+AND		SiteId		 = @SiteID 
+AND		DepartmentId = @DepartmentId					
+)Employee
+LEFT
+JOIN	tblDesignation Designation	   ON Employee.DesignationId		 = Designation.DesignationId
+LEFT
+JOIN	tblQualification Qualification ON Employee.QualificationId	 = Qualification.QualificationId
+LEFT 
+JOIN	tblEmployee  Manager	   	   ON Employee.ReportingEmployeeId = Manager.EmployeeId
+END
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspGetEmployeeDetailsByEmployeeId]    Script Date: 19/12/2015 9:09:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--------------------------------------------------------------------------------------------------
+-- Date Created		 :	Thursday, December 10, 2015
+-- Created By		 :	Shaik Nazeer
+-- Description		 :	This procedure is for Get employee details based on EmployeeId from tblEmployee
+-- Usage Section	 :	uspGetEmployeeDetailsByEmployeeId
+-- Input Parameter	 :	@EmployeeId, @CompanuId, @SiteId, @DepartmentId
+-- Output Parameters :	EmployeeId, EmployeeName, ReportingEmployee, Salary, Email, MobileNumber,  
+--					 :	Qualification, ProfileImage, EmployeeNumber
+-- ================================================================================================
+--  Version  	  Author        			   Date            		  					 Remarks       
+-- ------------------------------------------------------------------------------------------------
+--  1.0			Shaik Nazeer	 		 September 29, 2015	05:44 Pm					Creation 
+ALTER PROCEDURE [dbo].[uspGetEmployeeDetailsByEmployeeId]
+
+(
+	@EmployeeId		BIGINT,
+	@CompanyId		INT,
+	@SiteID			INT,
+	@DepartmentId	INT
+)
+AS
+BEGIN
+SELECT	Employee.EmployeeId,
+		Employee.DesignationId,
+		Employee.ReportingEmployeeId, 
+		Employee.QualificationId,
+		Employee.EmployeeName, 
+		Designation.Designation,
+		Manager.EmployeeName AS ReportingEmployee,
+		CAST(Employee.Salary AS VARCHAR) Salary,
+		Employee.Email,
+		Employee.MobileNumber,
+		Qualification.Qualification,
+		Employee.ProfileImage,
+		Employee.EmployeeNumber
+FROM 
+(
+SELECT	EmployeeId, 
+		EmployeeName, 
+		DesignationId, 
+		ReportingEmployeeId, 
+		Salary, 
+		Email, 
+		MobileNumber, 
+		QualificationId, 
+		ProfileImage, 
+		EmployeeNumber 
+FROM 	tblEmployee 
+WHERE 	EmployeeId	 = @EmployeeId
+AND		CompanyId	 = @CompanyId
+AND 	SiteId		 = @SiteID 
+AND 	DepartmentId = @DepartmentId		
+) Employee
+	LEFT
+	JOIN tblDesignation Designation		ON Employee.DesignationId		= Designation.DesignationId
+	LEFT
+	JOIN tblQualification Qualification	ON Employee.QualificationId		= Qualification.QualificationId
+	LEFT 
+	JOIN tblEmployee  Manager		    ON Employee.ReportingEmployeeId	= Manager.EmployeeId
+END
+
+
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspInsertEmployeeDetails]    Script Date: 19/12/2015 9:10:06 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+---------------------------------------------------------------------------------------------------
+-- Date Created		 :	Thursday, December 10, 2015
+-- Created By		 :	Shaik Nazeer
+-- Description		 :	This procedure is used to store Employee details in tblEmployee
+-- Usage Section	 :	uspBindReportingEmployeeBasedOnDesignationId
+-- Input Parameter	 :	@ComapanyId,  @SiteId, @DepartmentId, @DesignationId, @ReportingEmployeeId, 
+--					 :	@QualificationId, @EmployeeName,@Salary, @Email, @MobileNumber,
+--					 :	@ProfileImage, @EmployeeNumber,@Tag,@Comments,
+--					 :	@DisplayOnWeb, @IsPublished, @SortOrder, @IPAddress, @CreatedBy,
+--					 :	@DateCreated, @UpdatedBy, @LastUpdated, @DeletedBy,
+--					 :	@DateDeleted, @PublishedBy,@DatePublished
+-- OutPut parameters :	EmployeeId
+-- ================================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ------------------------------------------------------------------------------------------------
+--  1.0			Shaik Nazeer	 		 December 10, 2015 10:33 AM				Creation 
+
+ALTER PROCEDURE [dbo].[uspInsertEmployeeDetails]
+
+(
+	@ComapanyId			 INT, 
+	@SiteId				 INT, 
+	@DepartmentId		 INT, 
+	@DesignationId		 INT, 
+	@ReportingEmployeeId BIGINT, 
+	@QualificationId	 INT, 
+	@EmployeeName		 NVARCHAR(64), 
+	@Salary				 MONEY, 
+	@Email				 NVARCHAR(128),
+	@MobileNumber		 NVARCHAR(24), 
+	@ProfileImage		 NVARCHAR(128), 
+	@EmployeeNumber		 NVARCHAR(32), 
+	@Tag				 NVARCHAR(64), 
+	@Comments			 NVARCHAR(512), 
+	@DisplayOnWeb		 BIT, 
+	@IsPublished		 BIT, 
+	@SortOrder			 INT, 
+	@IPAddress			 NVARCHAR(64), 
+	@CreatedBy			 NVARCHAR(128), 
+	@DateCreated		 DATETIME, 
+	@UpdatedBy			 NVARCHAR(128), 
+	@LastUpdated		 DATETIME, 
+	@DeletedBy			 NVARCHAR(128), 
+	@DateDeleted		 DATETIME, 
+	@PublishedBy		 NVARCHAR(128), 
+	@DatePublished		 DATETIME
+
+)
+AS
+BEGIN
+
+INSERT 
+INTO tblEmployee
+(
+	CompanyId,
+	SiteId,
+	DepartmentId,
+	DesignationId,
+	ReportingEmployeeId,
+	QualificationId,
+	EmployeeName,
+	Salary,
+	Email,
+	MobileNumber,
+	ProfileImage,
+	EmployeeNumber,
+	Tag,
+	Comments,
+	DisplayOnWeb,
+	IsPublished,
+	SortOrder,
+	IPAddress,
+	CreatedBy,
+	DateCreated,
+	UpdatedBy,
+	LastUpdated,
+	DeletedBy,
+	DateDeleted,
+	PublishedBy,
+	DatePublished
+)
+VALUES
+(
+	@ComapanyId,
+	@SiteId,
+	@DepartmentId,
+	@DesignationId,
+	@ReportingEmployeeId,
+	@QualificationId,
+	@EmployeeName,
+	@Salary,
+	@Email,
+	@MobileNumber,
+	@ProfileImage,
+	@EmployeeNumber,
+	@Tag,
+	@Comments,
+	@DisplayOnWeb,
+	@IsPublished,
+	@SortOrder,
+	@IPAddress,
+	@CreatedBy,
+	@DateCreated,
+	@UpdatedBy,
+	@LastUpdated,
+	@DeletedBy,
+	@DateDeleted,
+	@PublishedBy,
+	@DatePublished
+)
+SELECT SCOPE_IDENTITY()
+	
+END
+
+
+
+
+USE [NazeerDB]
+GO
+/****** Object:  StoredProcedure [dbo].[uspUpdateEmployeeDetails]    Script Date: 19/12/2015 9:10:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+----------------------------------------------------------------------------------------------
+-- Date Created		:	Thursday, December 10, 2015
+-- Created By		:	Shaik Nazeer
+-- Description		:	This procedure is for Update data in tblEmployee
+-- Usage Section	:	uspUpdateEmployeeDetails
+-- Input Parameter	:	@CompanyId, @SiteID, @DepartmentId, @EmployeeId, @EmployeeName,
+--					:	@DesignationId, @ReportingEmployeeId, @Salary, @Email, 
+--					:	@MobileNumber,	@QualificationId, @ProfileImage,@EmployeeNumber
+-- =========================================================================================
+--  Version  	  Author        			   Date            		  	         Remarks       
+-- ------------------------------------------------------------------------------------------
+--  1.0		  Shaik Nazeer	 			September 29, 2015						Creation 
+ALTER PROCEDURE [dbo].[uspUpdateEmployeeDetails]
+
+(
+	@EmployeeId			 BIGINT,
+	@CompanyId			 INT,
+	@SiteID				 INT,
+	@DepartmentId		 INT,
+	@EmployeeName		 NVARCHAR(64),
+	@DesignationId		 INT,
+	@ReportingEmployeeId BIGINT,
+	@Salary				 MONEY,
+	@Email				 NVARCHAR(128),
+	@MobileNumber		 NVARCHAR(24),
+	@QualificationId	 INT,
+	@ProfileImage		 NVARCHAR(128),
+	@EmployeeNumber		 NVARCHAR(32)
+)
+AS
+BEGIN
+UPDATE	tblEmployee 
+SET		CompanyId			= @CompanyId,
+		SiteId				= @SiteID,
+		DepartmentId		= @DepartmentId,
+		EmployeeName		= @EmployeeName,
+		DesignationId		= @DesignationId,
+		ReportingEmployeeId	= @ReportingEmployeeId,
+		Salary				= @Salary,
+		Email				= @Email,
+		MobileNumber		= @MobileNumber,
+		QualificationId		= @QualificationId,
+		ProfileImage		= @ProfileImage,
+		EmployeeNumber		= @EmployeeNumber
+		
+WHERE	EmployeeId	 = @EmployeeId 
+AND		CompanyId	 = @CompanyId
+AND		SiteId		 = @SiteID
+AND		DepartmentId = @DepartmentId		
+END
