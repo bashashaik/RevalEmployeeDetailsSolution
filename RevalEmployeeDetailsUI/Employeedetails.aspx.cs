@@ -127,6 +127,7 @@ namespace RevalEmployeeDetailsUI
                 EmployeeDetailsBAL objEmployeeDetailsBAL = null;
                 lblEmailValidation.Visible = false;
                 lblEmployeeNumberValidation.Visible = false;
+                lblStatus.Text = string.Empty;
                 objEmployeeDetailsListDTO = new EmployeeDetailsListDTO();
                 objEmployeeDetailsListDTO.EmployeeName = txtEmployeeName.Text.Trim();
                 if (Convert.ToInt16(ddlDesignation.SelectedItem.Value) != 0)
@@ -291,6 +292,7 @@ namespace RevalEmployeeDetailsUI
                 EmployeeDetailsListDTO objEmployeeDetailsListDTO = new EmployeeDetailsListDTO();
                 lblEmailValidation.Visible = false;
                 lblEmployeeNumberValidation.Visible = false;
+                lblStatus.Text = string.Empty;
                 objEmployeeDetailsListDTO.EmployeeId = Convert.ToInt64(hfEmployeeId.Value);
                 objEmployeeDetailsListDTO.EmployeeName = txtEmployeeName.Text;
                 objEmployeeDetailsListDTO.DesignationId = Convert.ToInt16(ddlDesignation.SelectedItem.Value);
